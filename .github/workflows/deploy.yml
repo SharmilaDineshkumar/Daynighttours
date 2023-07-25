@@ -26,6 +26,12 @@ jobs:
       - name: Install SSH client
         run: sudo apt install openssh-client
 
+      - name: echo secrets
+        run : echo '${{ secrets.SSH_KEY }}'
+
+      - name: echo secrets
+        run : echo '${{ secrets.EC2_IP_ADDRESS }}'
+
       - name: SSH into DigitalOcean server
         run: echo '${{ secrets.SSH_KEY }}' | ssh -o StrictHostKeyChecking=no -i /dev/stdin username@${{ secrets.EC2_IP_ADDRESS }} 'cd /var/www/html && git pull origin master'
 
