@@ -16,6 +16,8 @@ class SocialAccount extends Model
         'user_id', 'provider_user_id', 'provider'
     ];
 
+
+
     /**
      * This resource belong to al-least one user.
      *
