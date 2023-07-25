@@ -27,7 +27,7 @@ jobs:
         run: sudo apt install openssh-client
 
       - name: SSH into DigitalOcean server
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} username@${{ secrets.EC2_IP_ADDRESS }} 'cd /var/www/html && git pull origin master'
+        run: echo ${{ secrets.SSH_KEY }} | ssh -o StrictHostKeyChecking=no -i /dev/stdin username@${{ secrets.EC2_IP_ADDRESS }} 'cd /var/www/html && git pull origin master'
 
       - name: Install PHP dependencies
         run: composer install
