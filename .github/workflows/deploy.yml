@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Add build steps here (e.g., compiling code, running tests)
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH client
+        run: sudo apt install openssh-client
+
+      - name: SSH into DigitalOcean server
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} username@${{ secrets.EC2_IP_ADDRESS }} 'cd /var/www/html && git pull origin main'
+
+      - name: Install PHP dependencies
+        run: composer install
+
+      - name: Deploy code
+        run: npm run build
