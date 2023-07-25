@@ -28,9 +28,31 @@ jobs:
 
       - name: SSH into DigitalOcean server
         run:  |
-              echo "${{ secrets.SSH_KEY }}" > private_key
-              chmod 600 private_key
-              ssh -t StrictHostKeyChecking=no -i private_key username@${{ secrets.EC2_IP_ADDRESS }}
+              ssh -t StrictHostKeyChecking=no -i 'MIIEowIBAAKCAQEAh8GnGKKEf8F4CZ87I0oIGFJ1CKlqa7/PZq0xxgTfdDdKUmhJ
+IrTrYuSzUbkeZmmM3QrCi4u/qW7CyKT0RjkfXniOORUIgqLgFRKAmLf8dzZhNFkW
+wW6+eC5Y2hNPO3aKShDLI38Z42xnlQ7L0QIUTx3oU1wHSFESkmqsjUngWE2J8S2j
+/n/NtI18dpA/vHrl8zhE44rh5nTzPedbuQzR95Qm0UQbgB+rpJc4/X12DQQGUt5G
+cCGJpYCBuTopLQYk1WB/GFVjqmVftPsExNHDLTCR8pA/A/ChEw1605TkppnlUWVU
++Hk6sKxNNjQea7ip3c8N7pXTF5y3/jm+6XfEvQIDAQABAoIBAA8b8Hr/a3vEjpWT
+kUNmM+xxEPF72YpQeMbWs9l0JWKL3Mu7K5ifRitlhMetsMJ5MOJRFkHttdEnsKog
+IcfHB8S96iZUPvQ7KHFv87wLjh++f6cR20SADNbXYbAzwfe+Q7nmkJVMyhbTs9uV
+H/4NGzGLBJZygaT80PJWyQmYlU1+ej6g+bqxDmmvN2oOBuAfxAFiORI376PjmcYu
+O0/OHSPqSE4LlEQDZddPnWiq3M/dnwFkt5WO+2YIhYdVcJYqTcNp1ekA2JtpplqF
+em/JW+NBwcnxAAUxEg4FgHfWOxaUJdVZmitmdB6+cTVpf+F6kC56cHZ5cdROGw1N
+b9dp5IECgYEAv5OkjnxdKWweNSfXv4zOifQCnHeB+2amOOvjJGNr4pALl3Uk/y6d
+LVdG3+xA9NrT0eAKInecVOpLV2UTvPww2s7+GOsusJz8L6Ute6WiWGofiVLwFy97
+5pkjK2cpa8TZliPEkhIIc72hPHeINET3TjjcoydFl888GF5xyRc/UK0CgYEAtWiV
+WwNEFfjqyFnUwawtF4RKa2hHcuUODiP38yyVvbSgoQmTn3TUWHEz0thef0Z1mMqU
+7lUWVcHhBG28tlSH7+enNrIAztckMc+CrKqHYeVVgcpGupmqLEsuYcR9VuETebvc
+uXV5tW3LQpaQxi1ogOGSx2dKUxZmrs6Vczqt9lECgYEAuGu34NaFlGeZWNBnF+XD
+ufelP9yny0zQvUEPIyt2Yt8J2Z6So/jKpCg9eThke5HgkUxcVTvRycjWCGasLqST
+nz/eSjy0cJ5fArq+4yXa98QJYdfuelNiseU/fvvLWwxf7fG2vGsRqeGlwqDLBI5T
+iACjHYijrPV5Q3g/jzaK4+0CgYBJqxzsBtmBasI9dm118Oum3ywxjfll6SraBzVL
+5VEx5sZMX005tgH9oIsBFqjZWs2qrKnqV1dooAE3ATFfgdhqTlKTXZoCZU/ngnN4
+lw+/a5hbyr8KTBjVP/qn7VlRDLoR935dOh2g1eNzOR21vP7xR6mJnKKMN06fsnjy
+gGPg4QKBgETqqguhKAKmkA8/p3YPOUA826ciEUT9m7uO86timBGbZdosvCIkmKZB
+r6ld/uf0Y8Pxn2hKK9arMNgdEmmF5X7ej9AI6j3OoLqmdUIlXdbaYJwyfEJDHXfh
+ff//lhG4QF1vJlJ9Bc0gzeYuj9mjDrIVs+Mg1VPNe8ZZ5aO8wx7B' username@'ip-172-31-42-195.eu-north-1.compute.internal'
               cd /var/www/html && git pull origin master
 
       - name: Install PHP dependencies
