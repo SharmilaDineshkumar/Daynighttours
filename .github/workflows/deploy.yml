@@ -31,7 +31,7 @@ jobs:
             ssh-private-key: ${{ secrets.SSH_KEY }}
 
       - name: Install PHP dependencies
-        run: cd /var/www/html && git pull origin master
+        run: git pull origin master
         
       - name: Install PHP dependencies
         run: composer install
