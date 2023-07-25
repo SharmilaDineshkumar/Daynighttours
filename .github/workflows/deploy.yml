@@ -26,14 +26,12 @@ jobs:
       - name: Install SSH client
         run: sudo apt install openssh-client
 
-      - name: echo secrets
-        run : echo '${{ secrets.SSH_KEY }}'
-
-      - name: echo secrets
-        run : echo '${{ secrets.EC2_IP_ADDRESS }}'
-
       - name: SSH into DigitalOcean server
-        run: echo '${{ secrets.SSH_KEY }}' | ssh -o StrictHostKeyChecking=no -i /dev/stdin username@${{ secrets.EC2_IP_ADDRESS }} 'cd /var/www/html && git pull origin master'
+        run:  |
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
+              chmod 600 private_key
+              ssh -o StrictHostKeyChecking=no -i private_key username@${{ secrets.EC2_IP_ADDRESS }}
+              cd /var/www/html && git pull origin master
 
       - name: Install PHP dependencies
         run: composer install
