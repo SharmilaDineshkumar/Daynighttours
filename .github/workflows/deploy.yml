@@ -28,7 +28,7 @@ jobs:
 
       - name: SSH into DigitalOcean server
         run:  |
-              echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
+              echo "${{ secrets.SSH_KEY }}" > private_key
               chmod 600 private_key
               ssh -t StrictHostKeyChecking=no -i private_key username@${{ secrets.EC2_IP_ADDRESS }}
               cd /var/www/html && git pull origin master
