@@ -20,8 +20,9 @@ jobs:
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.EC2_IP_ADDRESS }}
-          key: ${{ secrets.SSH_KEY }}
           username: 'ubuntu'
+          password: 'ShivaMurugan@3'
+          port: 22
           script: |
             pwd
             cd /home/ubuntu/Daynighttours
