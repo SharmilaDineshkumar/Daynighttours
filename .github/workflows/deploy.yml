@@ -6,17 +6,7 @@ on:
       - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Add build steps here (e.g., compiling code, running tests)
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
