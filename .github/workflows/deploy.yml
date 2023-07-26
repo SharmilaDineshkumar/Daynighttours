@@ -19,7 +19,7 @@ jobs:
       - name: Connect to server by ssh
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.EC2_IP_ADDRESS }}
+          host: 'ec2-16-170-250-208.eu-north-1.compute.amazonaws.com'
           username: 'ubuntu'
           password: 'ShivaMurugan@3'
           port: 22
