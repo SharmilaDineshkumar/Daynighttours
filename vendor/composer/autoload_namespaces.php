@@ -6,8 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Hal\\' => array($vendorDir . '/phpmetrics/phpmetrics/src'),
-    'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
-    'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
-    'Aacotroneo\\Saml2\\' => array($vendorDir . '/aacotroneo/laravel-saml2/src'),
 );

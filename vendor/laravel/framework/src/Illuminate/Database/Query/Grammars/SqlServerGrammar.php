@@ -97,20 +97,6 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
-     * Compile the index hints for the query.
-     *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  \Illuminate\Database\Query\IndexHint  $indexHint
-     * @return string
-     */
-    protected function compileIndexHint(Builder $query, $indexHint)
-    {
-        return $indexHint->type === 'force'
-                    ? "with (index({$indexHint->index}))"
-                    : '';
-    }
-
-    /**
      * {@inheritdoc}
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -180,31 +166,6 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
-     * Compile a "JSON contains key" statement into SQL.
-     *
-     * @param  string  $column
-     * @return string
-     */
-    protected function compileJsonContainsKey($column)
-    {
-        $segments = explode('->', $column);
-
-        $lastSegment = array_pop($segments);
-
-        if (preg_match('/\[([0-9]+)\]$/', $lastSegment, $matches)) {
-            $segments[] = Str::beforeLast($lastSegment, $matches[0]);
-
-            $key = $matches[1];
-        } else {
-            $key = "'".str_replace("'", "''", $lastSegment)."'";
-        }
-
-        [$field, $path] = $this->wrapJsonFieldAndPath(implode('->', $segments));
-
-        return $key.' in (select [key] from openjson('.$field.$path.'))';
-    }
-
-    /**
      * Compile a "JSON length" statement into SQL.
      *
      * @param  string  $column
@@ -220,18 +181,7 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
-     * Compile a "JSON value cast" statement into SQL.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function compileJsonValueCast($value)
-    {
-        return 'json_query('.$value.')';
-    }
-
-    /**
-     * Compile a single having clause.
+     * {@inheritdoc}
      *
      * @param  array  $having
      * @return string
@@ -257,7 +207,7 @@ class SqlServerGrammar extends Grammar
 
         $parameter = $this->parameter($having['value']);
 
-        return '('.$column.' '.$having['operator'].' '.$parameter.') != 0';
+        return $having['boolean'].' ('.$column.' '.$having['operator'].' '.$parameter.') != 0';
     }
 
     /**
@@ -389,7 +339,7 @@ class SqlServerGrammar extends Grammar
     /**
      * Compile the random statement into SQL.
      *
-     * @param  string|int  $seed
+     * @param  string  $seed
      * @return string
      */
     public function compileRandom($seed)
