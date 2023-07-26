@@ -24,4 +24,5 @@ jobs:
           username: 'ubuntu'
           script: |
             whoami
+            ls -ltr
 
