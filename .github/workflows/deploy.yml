@@ -26,5 +26,5 @@ jobs:
       - name: Install PHP dependencies
         run: composer install
 
-      - name: Deploy code
-        run: npm run dev
+      - name: Compile assets
+        run: npm install && npm run dev
