@@ -27,4 +27,4 @@ jobs:
         run: composer install
 
       - name: Deploy code
-        run: npm run prod
+        run: npm run dev
